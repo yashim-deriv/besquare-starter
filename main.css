@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+nav {
+  background-color: black;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  width: calc(100% - 20px);
+  height: 60px;
+  padding: 0 10px;
+}
+
+.menu {
+  margin-left: auto;
+}
+
+.app-logo {
+  font-size: 32px;
+}
+
+.menu > button {
+  background-color: cadetblue;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  color: white;
+}
+
+.main-content {
+  background-color: rgb(247, 247, 247);
+  height: 100vh;
+}
