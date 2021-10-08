@@ -33,3 +33,29 @@ nav {
   background-color: rgb(247, 247, 247);
   height: 100vh;
 }
+
+.score-box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  padding-left: 4rem;
+  background-color: black;
+  color: white;
+  width: 20rem;
+  height: 8rem;
+  font-size: 40px;
+  border-radius: 0.6rem;
+}
+
+#score {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+  width: 50%;
+  height: 100%;
+  margin-left: auto;
+  border-top-right-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+}
