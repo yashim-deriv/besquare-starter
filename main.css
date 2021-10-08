@@ -30,6 +30,36 @@ nav {
 }
 
 .main-content {
-  background-color: rgb(247, 247, 247);
+  background-color: rgb(245, 241, 241);
   height: 100vh;
+}
+
+.key-card {
+  border: 5px;
+}
+
+.score-box {
+  margin-top: 4rem;
+  background-color: black;
+  width: 20rem;
+  height: 8rem;
+  border-radius: 0.6rem;
+  color: white;
+  font-size: 4rem;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 4rem;
+  justify-content: left;
+}
+
+#score {
+  background-color: pink;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  width: 50%;
+  margin-left: auto;
+  border-top-right-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+  justify-content: center;
 }
