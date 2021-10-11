@@ -1,61 +1,181 @@
 body {
   margin: 0;
   font-family: "IBM Plex Sans", sans-serif;
+  overflow: hidden;
 }
 
 nav {
+  position: fixed;
+  display: inline-flex;
+  width: calc(100% - 32px);
+  height: 60px;
+  padding: 0 16px;
   background-color: black;
   color: white;
-  display: inline-flex;
   align-items: center;
-  width: calc(100% - 20px);
-  height: 60px;
-  padding: 0 10px;
-}
-
-.menu {
-  margin-left: auto;
+  top: 0;
 }
 
 .app-logo {
   font-size: 32px;
 }
 
+.menu {
+  margin-left: auto;
+}
+
 .menu > button {
-  background-color: cadetblue;
-  border: none;
-  border-radius: 4px;
+  background-color: rgb(1, 107, 93);
+  border-style: none;
   padding: 6px 10px;
+  margin-right: 6px;
+  border-radius: 4px;
+  font-size: 16px;
   color: white;
 }
 
 .main-content {
-  background-color: rgb(247, 247, 247);
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 60px;
+  background-color: rgb(249, 250, 251);
+}
+
+.data-display {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 4rem;
 }
 
 .score-box {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 4rem;
-  padding-left: 4rem;
   background-color: black;
   color: white;
-  width: 20rem;
-  height: 8rem;
-  font-size: 40px;
-  border-radius: 0.6rem;
-}
-
-#score {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: pink;
+  width: 320px;
+  height: 100px;
+  padding-left: 40px;
+  border-radius: 0.6rem;
+  font-size: 40px;
+  box-shadow: 0 2px 10px 1px #cccccc;
+}
+
+.score-box > #score {
+  background-color: #bb346c;
   width: 50%;
   height: 100%;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
   margin-left: auto;
+}
+
+#timer {
+  display: inline-flex;
+  width: 320px;
+  height: 100px;
+  background-color: white;
+  border-radius: 0.6rem;
+  margin-left: 40px;
+  box-shadow: 0 2px 10px 1px #cccccc;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+}
+
+/*Target-box*/
+.target-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 10px 1px #cccccc;
+  width: 90%;
+  height: 18rem;
+  border-radius: 0.4rem;
+  margin-top: 4rem;
+  font-size: 32px;
+  font-weight: bold;
+  color: gray;
+}
+
+.target-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 10px 1px #cccccc;
+  height: 10rem;
+  width: 8rem;
+  border-radius: 0.4rem;
+}
+
+.target-card.active {
+  height: 12rem;
+  width: 10rem;
+  box-shadow: 0 2px 10px 1px #000000;
+  color: black;
+}
+
+.target-card.correct {
+  box-shadow: 0 1px 10px 1px #169716;
+}
+
+.target-card.wrong {
+  box-shadow: 0 1px 10px 1px #ff5959;
+}
+
+.target-card.timeout {
+  box-shadow: 0 1px 10px 1px #ffae00;
+}
+
+/*Key-box*/
+.key-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  width: 90%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.key-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 10px 1px #cccccc;
+  border-radius: 0.6rem;
+  width: 7rem;
+  height: 12rem;
+}
+
+.key-card > .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  background-color: black;
+  color: white;
+  font-size: 2rem;
+  border-top-left-radius: 0.6rem;
   border-top-right-radius: 0.6rem;
-  border-bottom-right-radius: 0.6rem;
+}
+
+.key-card > .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: 1.3rem;
+  text-transform: uppercase;
 }
