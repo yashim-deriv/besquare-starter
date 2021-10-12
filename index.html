@@ -17,25 +17,25 @@
     <nav>
       <div class="app-logo">Drum App</div>
       <div class="menu">
-        <button>Start Game</button>
+        <button id="gameStart">Start Game</button>
         <button>Free Play</button>
       </div>
     </nav>
     <div class="main-content">
       <div class="data-display">
-        <div class="score-box">
+        <div class="score-box">Score
           <div id="score">0</div>
         </div>
-        <div id="timer">0:00</div>
+        <div id="timer">00:00</div>
       </div>
       <div class="target-box">
         <div class="target-card">A</div>
         <div class="target-card">G</div>
         <div class="target-card">A</div>
         <div class="target-card active">G</div>
-        <div class="target-card"></div>
-        <div class="target-card"></div>
-        <div class="target-card"></div>
+        <div class="target-card correct"></div>
+        <div class="target-card wrong"></div>
+        <div class="target-card timeout"></div>
       </div>
       <div class="key-box">
         <div id="clap" class="key-card">
@@ -76,5 +76,7 @@
         </div>
       </div>
     </div>
+
+    <script src="index.js" charset="utf-8"></script>
   </body>
 </html>
