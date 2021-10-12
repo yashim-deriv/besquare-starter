@@ -117,6 +117,7 @@ const default_card_data = [
 ];
 let reset_timer = false;
 let pause_timer = false;
+let time_out = false;
 
 document.addEventListener("keydown", function (e) {
   read_value(e.key);
@@ -155,8 +156,13 @@ function checkTarget(target) {
   let history_object = {};
   history_object.key = target.toUpperCase();
   if (display_keys[3].key === target.toUpperCase()) {
-    document.getElementById("score").innerText = count_score++;
-    history_object.status = "correct";
+    if (time_out == true) {
+      document.getElementById("score").innerText = count_score++;
+      history_object.status = "timeout";
+    } else {
+      document.getElementById("score").innerText = count_score++;
+      history_object.status = "correct";
+    }
   } else {
     history_object.status = "wrong";
   }
@@ -196,6 +202,7 @@ function calculateTarget() {
   });
 
   let new_display_keys = [[...new_target_card_data], [...new_history_key]];
+  console.log(new_display_keys);
   for (let i = 0; i < new_display_keys.length; i++) {
     for (let j = 0; j < new_display_keys[i].length; j++) {
       display_keys.push(new_display_keys[i][j]);
@@ -219,13 +226,14 @@ function updateTarget() {
 
 //Timer Part
 
-function start_timer(duration) {
-  let current_time = 180;
+function start_timer() {
+  let current_time = 10;
   const interval_id = setInterval(() => {
     const timer_id = document.getElementById("timer");
     timer_id.textContent = formatTime(current_time);
     current_time--;
-    if (current_time > duration) {
+    if (current_time < 0) {
+      time_out = true;
       clearInterval(interval_id);
     }
     if (reset_timer == true) {
@@ -284,6 +292,7 @@ function prepare_timer() {
     play_btn.innerText = "End Game";
     pause_timer = false;
     reset_timer = false;
+    time_out = false;
     start_timer();
   } else if (play_btn.innerText === "End Game") {
     reset();
