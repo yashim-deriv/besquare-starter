@@ -87,7 +87,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 //adding {key: '', status:''} to each combine item
-function addKeyStatus(e) {
+function addKeyStatus() {
   //What's coming? -> 3x upcoming + 1x active + 3x history
   //Upcoming beat
   let upcomingBeat = drumBeat.slice(currentBeat + 1, currentBeat + 4); // [s,d,f]
@@ -99,11 +99,15 @@ function addKeyStatus(e) {
   //Beat History
   let beatHistory = drumBeatHistory.slice(-3); // [ , , , ]
 
-  //from ['' , ''] to [{}, {}]
-  upcomingBeat.map((e) => ({ key: e, status: "" }));
-  beatHistory.map((e) => ({ key: e, status: "" }));
+  // ??? from ['' , ''] to [{}, {}]
+  upcomingBeat.map(getKeyStatus);
 
-  // [f,d,s,a]
+  // ???
+  function getKeyStatus(e) {
+    return { key: e, status: "" };
+  }
+
+  // ??? [f,d,s,a]
   const combine = [
     ...upcomingBeat,
     { key: activeBeat, status: "active" },
@@ -139,15 +143,51 @@ function formatTime(time) {
   return `${minutes}:${seconds}`;
 }
 
+//Stat game timer
+const startBtn = document.getElementById("start");
+startBtn.addEventListener("click", startTimer);
+
 //Clearing target-box
 function clearTarget() {
   const target_box = document.querySelector(".target-box");
   target_box.querySelectorAll("*").forEach((e) => e.remove());
 }
 
+//sample target card data
+const target_card_data = [
+  {
+    key: "A", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+  {
+    key: "S", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+  {
+    key: "D", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+  {
+    key: "F", //asdfghjkl
+    status: "active", //correct,wrong, ""
+  },
+  {
+    key: "", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+  {
+    key: "", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+  {
+    key: "", //asdfghjkl
+    status: "", //correct,wrong, ""
+  },
+];
+
 //For updating target
-function updateTarget(beat) {
-  beat.forEach((t) => {
+function updateTarget() {
+  target_card_data.forEach((t) => {
     // <div></div>
     const target_card = document.createElement("div");
     // <div class="target-card"></div>
