@@ -67,30 +67,53 @@ function checkKeys(event) {
 }
 
 //Beats to play
-const drumBeat = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+const drumBeat = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]; //song?
 let currentBeat = 0; //use index to access drumBeat
-const drumBeatHistory = [];
+let drumBeatHistory = []; //for storing history key
+let is_game_started = false; // use to check game start
+let interval_id; //use for stopping timer
+
+//to clear dummy in HTML
+clearTarget();
+updateTargetKeys();
 
 document.addEventListener("keydown", (e) => {
   //for sounds
   checkKeys(e);
 
-  //to check if key match w/ currentBeat
-  const isMatched = e.key === drumBeat[currentBeat];
-  if (isMatched) {
-    currentBeat++;
+  //for drum beat history
+  if (is_game_started) {
+    //to check if key match w/ currentBeat
+    const isMatched = e.key === drumBeat[currentBeat];
+    if (isMatched) {
+      currentBeat++;
+    }
+
     drumBeatHistory.push({
       key: e.key,
       status: isMatched ? "correct" : "wrong",
     });
+
+    console.log("history ===", drumBeatHistory); //correct logic!!
+
+    updateTargetKeys();
+    displayScore();
   }
 });
 
-//adding {key: '', status:''} to each combine item
-function addKeyStatus() {
+// For scoring
+function displayScore() {
+  const score = document.getElementById("score");
+  score.textContent = currentBeat;
+}
+
+// Turn into array of 7 key
+function updateTargetKeys() {
   //What's coming? -> 3x upcoming + 1x active + 3x history
+
   //Upcoming beat
   let upcomingBeat = drumBeat.slice(currentBeat + 1, currentBeat + 4); // [s,d,f]
+  console.log("upcoming beat", upcomingBeat);
   upcomingBeat.reverse(); // [f,d,s]
 
   //Current Beat Position
@@ -99,34 +122,26 @@ function addKeyStatus() {
   //Beat History
   let beatHistory = drumBeatHistory.slice(-3); // [ , , , ]
 
-  // ??? from ['' , ''] to [{}, {}]
-  upcomingBeat.map(getKeyStatus);
+  // from ['' , ''] to [{}, {}]
+  upcomingBeat = upcomingBeat.map((beat) => {
+    return { key: beat, status: "" };
+  });
 
-  // ???
-  function getKeyStatus(e) {
-    return { key: e, status: "" };
-  }
-
-  // ??? [f,d,s,a]
+  // ??? [f,d,s,a] { key: "", value: ""}
   const combine = [
     ...upcomingBeat,
     { key: activeBeat, status: "active" },
     ...beatHistory,
   ];
-  console.log(combine);
-}
-
-addKeyStatus();
-
-//to update card display
-function updateCardDisplay() {
-  const target_card = document.getElementById(target_card);
+  console.log(combine); // Correct logic!!
+  clearTarget();
+  displayTargetKeys(combine);
 }
 
 //For timer
 function startTimer(duration) {
   let current_time = 1;
-  const interval_id = setInterval(() => {
+  interval_id = setInterval(() => {
     const timer_id = document.getElementById("timer");
     timer_id.textContent = formatTime(current_time);
     current_time++;
@@ -143,9 +158,27 @@ function formatTime(time) {
   return `${minutes}:${seconds}`;
 }
 
-//Stat game timer
+// For Start/stop game & timer
 const startBtn = document.getElementById("start");
-startBtn.addEventListener("click", startTimer);
+startBtn.addEventListener("click", () => {
+  const timer_id = document.getElementById("timer");
+  is_game_started = !is_game_started; // Reverse. (toggle) Eg; true -> false, false -> true
+  if (is_game_started) {
+    startBtn.textContent = "Stop Game"; //btn start -> stop
+    timer_id.textContent = "00:00"; //timer retart from 0
+    startTimer(20); // Self-set
+
+    // Reset data upon game start
+    drumBeatHistory = []; // Clear History
+    currentBeat = 0; // Reset Position
+  } else {
+    startBtn.textContent = "Start Game";
+    clearInterval(interval_id); // stop the timer
+  }
+  // call again to update the target display
+  clearTarget();
+  updateTargetKeys();
+});
 
 //Clearing target-box
 function clearTarget() {
@@ -153,41 +186,9 @@ function clearTarget() {
   target_box.querySelectorAll("*").forEach((e) => e.remove());
 }
 
-//sample target card data
-const target_card_data = [
-  {
-    key: "A", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-  {
-    key: "S", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-  {
-    key: "D", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-  {
-    key: "F", //asdfghjkl
-    status: "active", //correct,wrong, ""
-  },
-  {
-    key: "", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-  {
-    key: "", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-  {
-    key: "", //asdfghjkl
-    status: "", //correct,wrong, ""
-  },
-];
-
 //For updating target
-function updateTarget() {
-  target_card_data.forEach((t) => {
+function displayTargetKeys(combinedArray) {
+  combinedArray.forEach((t) => {
     // <div></div>
     const target_card = document.createElement("div");
     // <div class="target-card"></div>
@@ -204,6 +205,3 @@ function updateTarget() {
     target_box.appendChild(target_card);
   });
 }
-
-clearTarget();
-updateTarget();
