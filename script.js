@@ -72,6 +72,7 @@ let currentBeat = 0; //use index to access drumBeat
 let drumBeatHistory = []; //for storing history key
 let is_game_started = false; // use to check game start
 let interval_id; //use for stopping timer
+const score = document.getElementById("score"); //use to update score
 
 //to clear dummy in HTML
 clearTarget();
@@ -103,7 +104,6 @@ document.addEventListener("keydown", (e) => {
 
 // For scoring
 function displayScore() {
-  const score = document.getElementById("score");
   score.textContent = currentBeat;
 }
 
@@ -165,7 +165,8 @@ startBtn.addEventListener("click", () => {
   is_game_started = !is_game_started; // Reverse. (toggle) Eg; true -> false, false -> true
   if (is_game_started) {
     startBtn.textContent = "Stop Game"; //btn start -> stop
-    timer_id.textContent = "00:00"; //timer retart from 0
+    timer_id.textContent = "00:00"; //timer restart from 0
+    score.textContent = 0; //score restart from 0
     startTimer(20); // Self-set
 
     // Reset data upon game start
