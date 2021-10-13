@@ -48,7 +48,7 @@ function play_instrument(event) {
 }
 
 //Update Target
-let array_keys = ["G", "A", "S", "G", "A", "S", "H"];
+let array_keys = ["G", "A", "S", "G", "A", "S", "S", "S", "G", "A", "G"];
 let history_keys = [
   { key: "", status: "" },
   { key: "", status: "" },
@@ -157,7 +157,6 @@ function checkTarget(target) {
   history_object.key = target.toUpperCase();
   if (display_keys[3].key === target.toUpperCase()) {
     if (time_out == true) {
-      document.getElementById("score").innerText = count_score++;
       history_object.status = "timeout";
     } else {
       document.getElementById("score").innerText = count_score++;
@@ -280,7 +279,7 @@ play_btn.addEventListener("click", prepare_timer);
 function prepare_timer() {
   if (play_btn.innerText === "Start Game") {
     count_score = 1;
-    array_keys = ["G", "A", "S", "G", "A", "S", "H"];
+    array_keys = ["G", "A", "S", "G", "A", "S", "S", "S", "G", "A", "G"];
     history_keys = [
       { key: "", status: "" },
       { key: "", status: "" },

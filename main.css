@@ -29,6 +29,14 @@ nav {
   color: white;
 }
 
+.menu > div {
+  transition: transform 2s;
+}
+
+.menu > button:hover {
+  transform: translateY(-5px);
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -150,13 +158,20 @@ nav {
   margin-top: 4rem;
 }
 
+.key-box > div {
+  transition: transform 1s;
+}
+
 .key-card {
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   width: 150px;
   height: 200px;
   box-shadow: 0px 0px 10px;
   border-radius: 0.6rem;
+}
+
+.key-card:hover {
+  transform: translateY(-20px);
 }
 
 .header {
@@ -183,4 +198,155 @@ nav {
   border-bottom-left-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
   font-weight: 600;
+}
+
+/* Mobile Devices ----------- */
+@media only screen and (min-width: 280px) and (max-width: 480px) {
+  .app-logo {
+    font-size: 16px;
+  }
+  .menu > button {
+    padding: 3px 5px;
+  }
+  .score-box {
+    width: 10rem;
+    font-size: 20px;
+    margin-top: 2rem;
+    padding-left: 2rem;
+  }
+  #score {
+    width: 50%;
+  }
+  #timer {
+    width: 160px;
+    font-size: 32px;
+    margin-top: 2rem;
+  }
+  .target-box {
+    height: 13rem;
+  }
+  .target-card {
+    height: 80px;
+    width: 40px;
+  }
+  .target-card.active {
+    height: 100px;
+    width: 40px;
+  }
+  .key-box {
+    flex-wrap: wrap;
+  }
+  .key-card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 75px;
+  }
+  .header {
+    font-size: 20px;
+  }
+  .content {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 800px) {
+  .app-logo {
+    font-size: 26px;
+  }
+  .menu > button {
+    padding: 4px 7px;
+  }
+  .score-box {
+    width: 10rem;
+    font-size: 26px;
+    margin-top: 2rem;
+    padding-left: 1rem;
+  }
+  #score {
+    width: 50%;
+  }
+  #timer {
+    width: 180px;
+    font-size: 36px;
+    margin-top: 2rem;
+  }
+  .target-box {
+    height: 15rem;
+  }
+  .target-card {
+    height: 100px;
+    width: 50px;
+  }
+  .target-card.active {
+    height: 120px;
+    width: 50px;
+  }
+  .key-box {
+    flex-wrap: wrap;
+  }
+  .key-card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    height: 150px;
+    width: 125px;
+  }
+  .header {
+    font-size: 30px;
+  }
+  .content {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1279px) {
+  .app-logo {
+    font-size: 28px;
+  }
+  .menu > button {
+    padding: 5px 9px;
+  }
+  .score-box {
+    width: 14rem;
+    font-size: 32px;
+    margin-top: 2rem;
+    padding-left: 2rem;
+  }
+  #score {
+    width: 50%;
+  }
+  #timer {
+    width: 180px;
+    font-size: 42px;
+    margin-top: 2rem;
+  }
+  .target-box {
+    height: 15rem;
+  }
+  .target-card {
+    height: 120px;
+    width: 90px;
+  }
+  .target-card.active {
+    height: 140px;
+    width: 90px;
+  }
+  .key-box {
+    flex-wrap: wrap;
+  }
+  .key-card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    height: 150px;
+    width: 125px;
+  }
+  .header {
+    font-size: 30px;
+  }
+  .content {
+    font-size: 22px;
+  }
 }
